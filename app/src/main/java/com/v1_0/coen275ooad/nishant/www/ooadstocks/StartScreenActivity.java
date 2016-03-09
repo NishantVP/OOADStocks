@@ -1,10 +1,14 @@
 package com.v1_0.coen275ooad.nishant.www.ooadstocks;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,6 +31,7 @@ public class StartScreenActivity extends AppCompatActivity {
     private TextView ServerIPTxtV;
     private TextView ServerPORTTxtV;
     private TextView newCommunicationPort;
+    private TextView textFromPCTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class StartScreenActivity extends AppCompatActivity {
         ServerIPTxtV = (TextView) findViewById(R.id.serverIPTextView);
         ServerPORTTxtV = (TextView) findViewById(R.id.serverPORTTextView);
         newCommunicationPort = (TextView) findViewById(R.id.newPortTextView);
+        textFromPCTV = (TextView) findViewById(R.id.textFromPC);
+
 
         /*//Parse Test
         ParseObject testObject = new ParseObject("TestObjectOOAD");
@@ -57,6 +64,18 @@ public class StartScreenActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
 
         getServerIPandPORT();
+
+
+        // Listen to Information coming from Android Service to update the views to show results to user
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        String messageFromPC = intent.getStringExtra("Message");
+                        textFromPCTV.setText(messageFromPC);
+                    }
+                }, new IntentFilter(FirstConnectionToServer.ACTION_BROADCAST)
+        );
 
     }
 
@@ -84,21 +103,23 @@ public class StartScreenActivity extends AppCompatActivity {
 
                     //Update Views
                     ServerIPTxtV.setText("Server IP:" +serverIP);
-                    ServerPORTTxtV.setText("Default PORT:" +serverPort);
+                    ServerPORTTxtV.setText("Default PORT:" + serverPort);
                     newCommunicationPort.setText("New PORT:");
 
-                    //Start a Service which will initiate the communication wiht the server in background
-                    // use this to start and trigger a service
-                    Intent i = new Intent(StartScreenActivity.this, FirstConnectionToServer.class);
-                    // potentially add data to the intent
-                    i.putExtra("KEY1", "Value to be used by the service");
-                    StartScreenActivity.this.startService(i);
+
                 }
             }
         });
     }
 
-
+    public void FirstConnectionClicked (View view) {
+        //Start a Service which will initiate the communication wiht the server in background
+        // use this to start and trigger a service
+        Intent i = new Intent(StartScreenActivity.this, FirstConnectionToServer.class);
+        // potentially add data to the intent
+        i.putExtra("KEY1", "Value to be used by the service");
+        StartScreenActivity.this.startService(i);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

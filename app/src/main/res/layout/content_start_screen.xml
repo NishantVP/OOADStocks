@@ -34,4 +34,24 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From PC"
+        android:id="@+id/textFromPC"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Connection"
+        android:id="@+id/firstConnection"
+        android:layout_below="@+id/serverPORTTextView"
+        android:layout_alignRight="@+id/textFromPC"
+        android:layout_alignEnd="@+id/textFromPC"
+        android:onClick="FirstConnectionClicked"
+        />
+
 </RelativeLayout>

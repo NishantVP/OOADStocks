@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -66,6 +67,8 @@ public class FirstConnectionToServer extends Service {
         protected String doInBackground(String... urls) {
             try {
 
+                System.out.println("Inside AsyncTask");
+
                 SocketChannel socketChannel = SocketChannel.open();
                 socketChannel.connect(new InetSocketAddress(serverIP, serverPortInt));
 
@@ -91,13 +94,17 @@ public class FirstConnectionToServer extends Service {
                 byte[] bytes = new byte[buffer.remaining()]; // create a byte array the length of the number of bytes written to the buffer
                 buffer.get(bytes); // read the bytes that were written
                 String packet = new String(bytes);
-                System.out.println("Buffer Incoming" +packet);
+                System.out.println("Buffer Incoming" + packet);
                 sendBroadcastMessage("port " + packet);
 
-                //S2CPort = S packet
+                S2CPort = Integer.parseInt(packet);
+                C2SPort = S2CPort + 1;
+
+                System.out.println("NewPortsFromServer: " +S2CPort +"," +C2SPort);
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("SERVER_TO_CLIENT_PORT", packet);
+                editor.putInt("SERVER_TO_CLIENT_PORT", S2CPort);
+                editor.putInt("CLIENT_TO_SERVER_PORT", C2SPort);
                 editor.commit();
 
 
@@ -112,6 +119,9 @@ public class FirstConnectionToServer extends Service {
 
         }
     }
+
+
+
     private void sendBroadcastMessage(String messageFromPC) {
 
         Intent intent = new Intent(ACTION_BROADCAST);

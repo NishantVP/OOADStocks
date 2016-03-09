@@ -26,6 +26,7 @@ public class StartScreenActivity extends AppCompatActivity {
 
     private TextView ServerIPTxtV;
     private TextView ServerPORTTxtV;
+    private TextView newCommunicationPort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class StartScreenActivity extends AppCompatActivity {
 
         ServerIPTxtV = (TextView) findViewById(R.id.serverIPTextView);
         ServerPORTTxtV = (TextView) findViewById(R.id.serverPORTTextView);
+        newCommunicationPort = (TextView) findViewById(R.id.newPortTextView);
 
         /*//Parse Test
         ParseObject testObject = new ParseObject("TestObjectOOAD");
@@ -52,7 +54,7 @@ public class StartScreenActivity extends AppCompatActivity {
         testObject.saveInBackground();
         */
 
-        sharedpreferences = getSharedPreferences("OSWorkerMyPREFERENCES", MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
 
         getServerIPandPORT();
 
@@ -81,16 +83,16 @@ public class StartScreenActivity extends AppCompatActivity {
                     editor.commit();
 
                     //Update Views
-                    ServerIPTxtV.setText(serverIP);
-                    ServerPORTTxtV.setText(serverPort);
-
+                    ServerIPTxtV.setText("Server IP:" +serverIP);
+                    ServerPORTTxtV.setText("Default PORT:" +serverPort);
+                    newCommunicationPort.setText("New PORT:");
 
                     //Start a Service which will initiate the communication wiht the server in background
                     // use this to start and trigger a service
-                        //Intent i = new Intent(StartScreenActivity.this, ConnectToServerService.class);
+                    Intent i = new Intent(StartScreenActivity.this, FirstConnectionToServer.class);
                     // potentially add data to the intent
-                        //i.putExtra("KEY1", "Value to be used by the service");
-                        //StartScreenActivity.this.startService(i);
+                    i.putExtra("KEY1", "Value to be used by the service");
+                    StartScreenActivity.this.startService(i);
                 }
             }
         });

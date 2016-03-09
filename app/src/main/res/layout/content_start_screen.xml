@@ -25,4 +25,13 @@
         android:text="Server Port"
         android:id="@+id/serverPORTTextView"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/newPortTextView"
+        android:layout_below="@+id/serverPORTTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

@@ -37,22 +37,27 @@ public class FirstConnectionToServer extends Service {
     //private DataInputStream in;
     //private DataOutputStream out;
 
+    private String userName = "";
+    private String password = "";
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //TODO do something useful
-
-        Toast.makeText(this, "This is from FirstConnectionToServer", Toast.LENGTH_SHORT).show();
 
         sharedpreferences = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
         // Reading from SharedPreferences
         serverIP = sharedpreferences.getString("SERVER_IP", "");
         serverPort = sharedpreferences.getString("SERVER_PORT", "");
         ParseObjID = sharedpreferences.getString("MY_PARSE_OBJ_ID", "");
+        userName = sharedpreferences.getString("USERNAME", "Username");
+        password = sharedpreferences.getString("PASSWORD", "Password");
 
         Log.d("SocketService IP ", serverIP);
         Log.d("SocketService Port ",serverPort);
         Log.d("SocketService ObjID ", ParseObjID);
+
+        Toast.makeText(this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
 
         serverPortInt = Integer.parseInt(serverPort);
         //ip = RunSocketClient();
@@ -72,13 +77,13 @@ public class FirstConnectionToServer extends Service {
                 SocketChannel socketChannel = SocketChannel.open();
                 socketChannel.connect(new InetSocketAddress(serverIP, serverPortInt));
 
-                String newData = "New String to write to file..." + System.currentTimeMillis();
+                String newUserAuth = "username:"+userName+","+"password:"+password;
 
                 ByteBuffer buf = ByteBuffer.allocate(1024);
                 ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
 
                 buf.clear();
-                buf.put(newData.getBytes());
+                buf.put(newUserAuth.getBytes());
 
                 buf.flip();
 

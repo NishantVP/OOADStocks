@@ -34,7 +34,12 @@
         <service
             android:name=".C2SService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity
+            android:name=".BuySellActivity"
+            android:label="@string/title_activity_buy_sell"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

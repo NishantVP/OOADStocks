@@ -139,6 +139,13 @@ public class StartScreenActivity extends AppCompatActivity {
         StartScreenActivity.this.startService(i);
     }
 
+    public void buySellActivityStart (View view) {
+        Intent myIntent = new Intent(StartScreenActivity.this, BuySellActivity.class);
+        myIntent.putExtra("key", "nothing"); //Optional parameters
+        StartScreenActivity.this.startActivity(myIntent);
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

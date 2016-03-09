@@ -54,4 +54,14 @@
         android:onClick="FirstConnectionClicked"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S2C Service"
+        android:id="@+id/startS2CService"
+        android:layout_below="@+id/firstConnection"
+        android:layout_alignRight="@+id/firstConnection"
+        android:layout_alignEnd="@+id/firstConnection"
+        android:onClick="startS2CServiceClicked"/>
+
 </RelativeLayout>

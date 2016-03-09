@@ -121,6 +121,16 @@ public class StartScreenActivity extends AppCompatActivity {
         StartScreenActivity.this.startService(i);
     }
 
+    public void startS2CServiceClicked (View view) {
+        //Start a Service which will initiate the communication wiht the server in background
+        // use this to start and trigger a service
+        Intent i = new Intent(StartScreenActivity.this, StoCService.class);
+        // potentially add data to the intent
+        i.putExtra("KEY1", "Value to be used by the service");
+        StartScreenActivity.this.startService(i);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

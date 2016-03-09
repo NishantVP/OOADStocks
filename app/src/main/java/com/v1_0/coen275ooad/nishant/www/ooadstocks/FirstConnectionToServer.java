@@ -107,7 +107,6 @@ public class FirstConnectionToServer extends Service {
                 editor.putInt("CLIENT_TO_SERVER_PORT", C2SPort);
                 editor.commit();
 
-
                 return "done";
             }
             catch (IOException e) {

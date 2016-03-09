@@ -1,7 +1,6 @@
 package com.v1_0.coen275ooad.nishant.www.ooadstocks;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -9,12 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
-
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,10 +16,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class StoCService extends Service {
+public class C2SService extends Service {
 
     private String serverIP;
     private SharedPreferences sharedpreferences;
+
+    private int C2SPort;
+    private Socket CtoSSocket;
 
     private int S2CPort;
     private Socket StoCSocket;
@@ -35,10 +32,14 @@ public class StoCService extends Service {
     private PrintWriter pWrite;
     private BufferedReader bRead;
     private String receivedMessage;
+    private  SendDataTask task;
 
-    private ReceiveDataTask task;
+    public static final String ACTION_BROADCAST = C2SService.class.getName() + "Broadcast";
+    private static final String NO_NEW_DATA = "noUpdates";
+    private String newData = NO_NEW_DATA;
 
-    public static final String ACTION_BROADCAST = StoCService.class.getName() + "Broadcast";
+    public C2SService() {
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -47,35 +48,58 @@ public class StoCService extends Service {
 
         sharedpreferences = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
         serverIP = sharedpreferences.getString("SERVER_IP", "");
+        C2SPort = sharedpreferences.getInt("CLIENT_TO_SERVER_PORT", 1000);
         S2CPort = sharedpreferences.getInt("SERVER_TO_CLIENT_PORT", 1000);
 
-        Log.d("S2CPort", Integer.toString(S2CPort));
+        Log.d("C2SPort ", Integer.toString(C2SPort));
 
-        new ReceiveDataTask().execute();
+        new SendDataTask().execute();
+        //System.out.println("SendTask Created");
         //task.execute();
 
         return Service.START_NOT_STICKY;
     }
 
-    private class ReceiveDataTask extends AsyncTask<String, Void, String> {
+    private class SendDataTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
+            System.out.println("Started SendDataTask");
 
-            System.out.println("Inside do in background");
 
+            try {
+                StoCSocket = new Socket(serverIP, S2CPort);  //connect to server
+                inStream = StoCSocket.getInputStream();
+                bRead = new BufferedReader(new InputStreamReader(inStream));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+            while(true) {
                 try {
-                    StoCSocket = new Socket(serverIP, S2CPort);  //connect to server
-                    outStream = StoCSocket.getOutputStream();
+                    CtoSSocket = new Socket(serverIP, C2SPort);  //connect to server
+                    outStream = CtoSSocket.getOutputStream();
                     pWrite = new PrintWriter(outStream, true);
-                    inStream = StoCSocket.getInputStream();
-                    bRead = new BufferedReader(new InputStreamReader(inStream));
+                    //inStream = CtoSSocket.getInputStream();
+                    //bRead = new BufferedReader(new InputStreamReader(inStream));
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.d("ClientApp", "Started");
+                //Log.d("ClientApp", "Started");
 
-            while (true) {
+                System.out.println(SendToServer.getTextDataToSend());
+                pWrite.println(SendToServer.getTextDataToSend());
+                pWrite.flush();
+                //System.out.println("Flush Executed");
+                /*try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+                //System.out.println("Wake up after sleep 1");
+
                 try {
                     if ((receivedMessage = bRead.readLine()) == null) {
                         System.out.println("Waiting for new message from Server ..");
@@ -84,27 +108,45 @@ public class StoCService extends Service {
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
+
                         }
                     } else {
                         System.out.println("Message from Server: " + receivedMessage);
+                        receivedMessage = null;
                     }
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
             }
 
-            //task.cancel(true);
-            //System.out.println("Returning done");
 
-            //return "done";
+                /*try {
+                    CtoSSocket.close();
+                    System.out.println("C2S Socket Closed");
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            //task.cancel(true);
+            System.out.println("Returning done");
+            return "done";*/
+        }
+        protected void onProgressUpdate(Integer... progress) {
+            //setProgressPercent(progress[0]);
+        }
+
+        protected void onPostExecute(Long result) {
+            //showDialog("Downloaded " + result + " bytes");
+
         }
     }
 
+    public void SendDataToServer (String newMessage) {
 
-
-    public StoCService() {
     }
 
     @Override

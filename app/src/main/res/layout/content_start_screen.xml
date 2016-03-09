@@ -64,4 +64,14 @@
         android:layout_alignEnd="@+id/firstConnection"
         android:onClick="startS2CServiceClicked"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C2S Service"
+        android:id="@+id/startC2SService"
+        android:layout_below="@+id/startS2CService"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="startC2SServiceClicked"/>
+
 </RelativeLayout>

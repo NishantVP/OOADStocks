@@ -77,7 +77,7 @@ public class FirstConnectionToServer extends Service {
                 SocketChannel socketChannel = SocketChannel.open();
                 socketChannel.connect(new InetSocketAddress(serverIP, serverPortInt));
 
-                String newUserAuth = "username:"+userName+","+"password:"+password;
+                String newUserAuth = userName+","+password;
 
                 ByteBuffer buf = ByteBuffer.allocate(1024);
                 ByteBuffer buffer = ByteBuffer.allocateDirect(1024);

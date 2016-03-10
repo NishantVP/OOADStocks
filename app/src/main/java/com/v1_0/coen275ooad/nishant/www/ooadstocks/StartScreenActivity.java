@@ -163,6 +163,10 @@ public class StartScreenActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent myIntent = new Intent(StartScreenActivity.this, StartScreenActivity.class);
+            myIntent.putExtra("key", "nothing"); //Optional parameters
+            StartScreenActivity.this.startActivity(myIntent);
+
             return true;
         }
 

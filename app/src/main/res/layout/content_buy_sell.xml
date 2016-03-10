@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Market"
+        android:text="Stock"
         android:id="@+id/textView2"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Value"
+        android:text="Maeket Value"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView"
         android:layout_toRightOf="@+id/textView2"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stockPrice"
-        android:id="@+id/textView5"
+        android:id="@+id/googleValue"
         android:layout_alignTop="@+id/textView4"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3" />
@@ -75,10 +75,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stockPrice"
-        android:id="@+id/textView7"
+        android:id="@+id/facebookValue"
         android:layout_alignTop="@+id/textView6"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5" />
+        android:layout_alignLeft="@+id/googleValue"
+        android:layout_alignStart="@+id/googleValue" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,19 +93,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stockPrice"
-        android:id="@+id/textView9"
-        android:layout_below="@+id/textView7"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
+        android:id="@+id/amazonValue"
+        android:layout_below="@+id/facebookValue"
+        android:layout_alignLeft="@+id/facebookValue"
+        android:layout_alignStart="@+id/facebookValue" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You Own Units"
+        android:text="Units Owned"
         android:id="@+id/textView11"
-        android:layout_above="@+id/textView5"
-        android:layout_toRightOf="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5"
+        android:layout_above="@+id/googleValue"
+        android:layout_toRightOf="@+id/googleValue"
+        android:layout_toEndOf="@+id/googleValue"
         android:layout_marginLeft="57dp"
         android:layout_marginStart="57dp" />
 
@@ -113,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Units"
-        android:id="@+id/textView10"
+        android:id="@+id/googleOwner"
         android:layout_below="@+id/textView11"
         android:layout_alignLeft="@+id/textView11"
         android:layout_alignStart="@+id/textView11" />
@@ -122,19 +122,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Units"
-        android:id="@+id/textView12"
-        android:layout_alignTop="@+id/textView7"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10" />
+        android:id="@+id/facebookUnits"
+        android:layout_alignTop="@+id/facebookValue"
+        android:layout_alignLeft="@+id/googleOwner"
+        android:layout_alignStart="@+id/googleOwner" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Units"
-        android:id="@+id/textView13"
-        android:layout_below="@+id/textView12"
-        android:layout_alignLeft="@+id/textView12"
-        android:layout_alignStart="@+id/textView12" />
+        android:id="@+id/amazonUnits"
+        android:layout_below="@+id/facebookUnits"
+        android:layout_alignLeft="@+id/facebookUnits"
+        android:layout_alignStart="@+id/facebookUnits" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -152,10 +152,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Cash"
-        android:id="@+id/textView15"
+        android:id="@+id/cash"
         android:layout_alignTop="@+id/textView14"
-        android:layout_alignLeft="@+id/textView13"
-        android:layout_alignStart="@+id/textView13" />
+        android:layout_alignLeft="@+id/amazonUnits"
+        android:layout_alignStart="@+id/amazonUnits" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -173,33 +173,40 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/googlePrice"
         android:layout_below="@+id/textView16"
         android:layout_alignLeft="@+id/textView16"
         android:layout_alignStart="@+id/textView16"
         android:text="Enter Price"
         android:layout_toLeftOf="@+id/textView11"
         android:layout_toStartOf="@+id/textView11" />
-
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@id/googlePrice"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sell"
-        android:id="@+id/radioButton"
+        android:id="@+id/googleSell"
         android:checked="false"
-        android:layout_alignTop="@+id/radioButton2"
-        android:layout_alignLeft="@+id/textView15"
-        android:layout_alignStart="@+id/textView15" />
+        android:layout_alignTop="@+id/googleBuy"
+        android:layout_alignLeft="@+id/cash"
+        android:layout_alignStart="@+id/cash" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buy"
-        android:id="@+id/radioButton2"
+        android:id="@+id/googleBuy"
         android:checked="false"
-        android:layout_alignTop="@+id/editText"
-        android:layout_toLeftOf="@+id/radioButton"
-        android:layout_toStartOf="@+id/radioButton" />
+        android:layout_alignTop="@+id/googlePrice"
+        android:layout_toLeftOf="@+id/googleSell"
+        android:layout_toStartOf="@+id/googleSell" />
+    </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
@@ -208,16 +215,16 @@
         android:text="Facebook"
         android:id="@+id/facebook"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"/>
+        android:layout_alignLeft="@+id/googlePrice"
+        android:layout_alignStart="@+id/googlePrice"
+        android:layout_below="@+id/googlePrice"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText1"
+        android:id="@+id/facebookPrice"
         android:layout_below="@+id/facebook"
         android:layout_alignLeft="@+id/facebook"
         android:layout_alignStart="@+id/facebook"
@@ -225,25 +232,33 @@
         android:layout_toLeftOf="@+id/textView11"
         android:layout_toStartOf="@+id/textView11" />
 
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@id/facebookPrice"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sell"
-        android:id="@+id/radioButton3"
+        android:id="@+id/facebookSell"
         android:checked="false"
-        android:layout_alignTop="@+id/radioButton4"
-        android:layout_alignLeft="@+id/textView15"
-        android:layout_alignStart="@+id/textView15" />
+        android:layout_alignTop="@+id/facebookBuy"
+        android:layout_alignLeft="@+id/cash"
+        android:layout_alignStart="@+id/cash" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buy"
-        android:id="@+id/radioButton4"
+        android:id="@+id/facebookBuy"
         android:checked="false"
-        android:layout_alignTop="@+id/editText1"
-        android:layout_toLeftOf="@+id/radioButton"
-        android:layout_toStartOf="@+id/radioButton" />
+        android:layout_alignTop="@+id/facebookPrice"
+        android:layout_toLeftOf="@+id/googleSell"
+        android:layout_toStartOf="@+id/googleSell" />
+    </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
@@ -251,48 +266,55 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Amazon"
         android:id="@+id/textView17"
-        android:layout_below="@+id/editText1"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignStart="@+id/editText1" />
+        android:layout_below="@+id/facebookPrice"
+        android:layout_alignLeft="@+id/facebookPrice"
+        android:layout_alignStart="@+id/facebookPrice" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/amazonPrice"
         android:text="Enter Price"
         android:layout_below="@+id/textView17"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_toLeftOf="@+id/radioButton5"
-        android:layout_toStartOf="@+id/radioButton5" />
+        android:layout_alignLeft="@+id/facebookPrice"
+        android:layout_toLeftOf="@+id/amazonBuy"
+        android:layout_toStartOf="@+id/amazonBuy" />
 
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@id/amazonPrice"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buy"
-        android:id="@+id/radioButton5"
+        android:id="@+id/amazonBuy"
         android:checked="false"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_toLeftOf="@+id/radioButton3"
-        android:layout_toStartOf="@+id/radioButton3" />
+        android:layout_alignBottom="@+id/amazonPrice"
+        android:layout_toLeftOf="@+id/facebookSell"
+        android:layout_toStartOf="@+id/facebookSell" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sell"
-        android:id="@+id/radioButton6"
+        android:id="@+id/amazonSell"
         android:checked="false"
-        android:layout_alignTop="@+id/radioButton5"
-        android:layout_alignLeft="@+id/radioButton3"
-        android:layout_alignStart="@+id/radioButton3" />
+         />
+    </RadioGroup>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Request"
         android:id="@+id/button"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/amazonPrice"
+        android:layout_centerHorizontal="true"
+        android:onClick="requestClicked"/>
 
 </RelativeLayout>

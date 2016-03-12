@@ -14,7 +14,7 @@ public class User {
     private Portfolio p ;//new Portfolio();
     private Authentication a ;//new Authentication();
 
-    User()
+    public User()
     {
         ID = userCount++;
     }

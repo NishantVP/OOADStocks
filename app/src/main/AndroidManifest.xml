@@ -52,7 +52,12 @@
         <service
             android:name=".connections.AlternateSendReceiveService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity
+            android:name=".market.MarketStatusActivity"
+            android:label="@string/title_activity_market_status"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell.BuySellRequest;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.Stock;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,6 +45,9 @@ public class AlternateSendReceiveService extends Service {
     public static final String ACTION_BROADCAST = C2SService.class.getName() + "Broadcast";
     private static final String NO_NEW_DATA = "noUpdates";
     private String newData = NO_NEW_DATA;
+
+    private User currentUser =  new User();
+    private List<Stock> MarketStocks = new ArrayList<Stock>();
 
     //private List<BuySellRequest> BuySellRequestList; //=  new ArrayList<>();
 
@@ -115,6 +120,11 @@ public class AlternateSendReceiveService extends Service {
                         }
                     } else {
                         System.out.println("Message from Server: " + receivedMessage);
+                        currentUser = ReceivedMessageDecode.stringToUser(receivedMessage);
+                        MarketStocks = ReceivedMessageDecode.stringToMarket(receivedMessage);
+                        ReceivedMessageDecode.updateCurrentUser(currentUser);
+                        ReceivedMessageDecode.updateMarket(MarketStocks);
+
                         receivedMessage = null;
                     }
                 } catch (IOException e) {

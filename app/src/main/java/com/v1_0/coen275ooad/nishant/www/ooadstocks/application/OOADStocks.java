@@ -1,4 +1,4 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.application;
 
 import android.app.Application;
 import android.util.Log;

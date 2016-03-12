@@ -1,4 +1,4 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +18,10 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.application.StartScreenActivity;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell.BuySellNewActivity;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.FirstConnectionToServer;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -114,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             i.putExtra("KEY1", "Value to be used by the service");
             LoginActivity.this.startService(i);
 
-            Intent myIntent = new Intent(LoginActivity.this, BuySellActivity.class);
+            Intent myIntent = new Intent(LoginActivity.this, BuySellNewActivity.class);
             myIntent.putExtra("key", "nothing"); //Optional parameters
             LoginActivity.this.startActivity(myIntent);
         }

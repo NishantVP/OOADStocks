@@ -1,4 +1,4 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.application;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,6 +21,11 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell.BuySellActivity;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.C2SService;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.FirstConnectionToServer;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.StoCService;
 
 public class StartScreenActivity extends AppCompatActivity {
 

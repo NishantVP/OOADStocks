@@ -1,4 +1,4 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +14,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import java.awt.font.TextAttribute;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.application.StartScreenActivity;
 
 public class BuySellActivity extends AppCompatActivity {
 

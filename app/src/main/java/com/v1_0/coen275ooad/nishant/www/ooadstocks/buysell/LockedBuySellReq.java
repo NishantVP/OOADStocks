@@ -1,5 +1,8 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell;
 
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell.BuySellRequest;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +10,11 @@ import java.util.List;
  */
 public class LockedBuySellReq {
 
-    private static List<BuySellRequest> BuySellRequestList;
+    private static List<BuySellRequest> BuySellRequestList =  new ArrayList<>();
+
+    public static List<BuySellRequest> getBuySellRequestList() {
+        return BuySellRequestList;
+    }
 
     public static void RemoveRequest(String stockName) {
 
@@ -16,6 +23,7 @@ public class LockedBuySellReq {
                 BuySellRequestList.remove(i);
                 break;
             }
+
         }
 
     }

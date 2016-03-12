@@ -1,4 +1,4 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell;
 
 /**
  * Created by nishant on 12/3/16.

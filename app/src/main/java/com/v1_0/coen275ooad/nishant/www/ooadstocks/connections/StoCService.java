@@ -1,7 +1,6 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.connections;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -9,18 +8,21 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.Authentication;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.Portfolio;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.Stock;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.TransactionHistory;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.User;
 
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoCService extends Service {
 
@@ -102,7 +104,50 @@ public class StoCService extends Service {
         }
     }
 
+    public User stringToUser(String data)
+    {
+        String[] fields = data.split("#");
+        String[] auth = fields[3].split(",");
+        Authentication a = new Authentication(auth[0],auth[1]);
 
+        String[] port = fields[2].split(",");
+        double moneyBalance = Double.parseDouble(port[0]);
+        port[1] = port[1].replace("{","");
+        port[1] = port[1].replace("}","");
+        String[] stocks = port[1].split(";");
+        List<Stock> portStocks = new ArrayList<Stock>();
+        for(String s: stocks)
+        {
+            if(s.equals("") == false)
+            {
+                String[] val = s.split(":");
+                Stock ob = new Stock(val[0],0,Integer.parseInt(val[1]));
+                portStocks.add(ob);
+            }
+        }
+        List<TransactionHistory> t = new ArrayList<TransactionHistory>();
+        Portfolio p = new Portfolio(moneyBalance,portStocks,t);
+
+        String[] userFields = fields[1].split(",");
+        User u = new User(userFields[0],userFields[1],userFields[2],userFields[3],p,a);
+        return u;
+
+    }
+
+    public List<Stock> stringToMarket(String data)
+    {
+        List<Stock> marketStocks = new ArrayList<Stock>();
+        String[] arr = data.split("#");
+        String[] stocks = arr[0].split(";");
+
+        for(String s: stocks)
+        {
+            String[] values = s.split(",");
+            Stock stk = new Stock(values[0],Double.parseDouble(values[1]),0);
+            marketStocks.add(stk);
+        }
+        return marketStocks;
+    }
 
     public StoCService() {
     }

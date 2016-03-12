@@ -1,4 +1,4 @@
-package com.v1_0.coen275ooad.nishant.www.ooadstocks;
+package com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell;
 
 /**
  * Created by nishant on 12/3/16.
@@ -9,7 +9,9 @@ public class StockBuySell {
     private String StockPrice;
 
 
-    public StockBuySell () {
+    public StockBuySell (String name, String price) {
+        this.StockName = name;
+        this.StockPrice = price;
 
     }
 

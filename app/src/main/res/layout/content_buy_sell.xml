@@ -186,7 +186,8 @@
         android:orientation="horizontal"
         android:layout_alignBottom="@id/googlePrice"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:id="@+id/radioGroup">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -278,9 +279,10 @@
         android:id="@+id/amazonPrice"
         android:text="Enter Price"
         android:layout_below="@+id/textView17"
-        android:layout_alignLeft="@+id/facebookPrice"
-        android:layout_toLeftOf="@+id/amazonBuy"
-        android:layout_toStartOf="@+id/amazonBuy" />
+        android:layout_alignRight="@+id/facebookPrice"
+        android:layout_alignEnd="@+id/facebookPrice"
+        android:layout_alignLeft="@+id/textView17"
+        android:layout_alignStart="@+id/textView17" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"

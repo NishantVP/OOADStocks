@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.SendToServer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,8 @@ public class BuySellNewActivity extends AppCompatActivity {
                /* for(int i=0; i<LockedBuySellReq.getBuySellRequestList().size(); i++) {
                     System.out.println("Request Lists" +LockedBuySellReq.getBuySellRequestList().get(i));
                 }*/
+
+                SendToServer.addToAllRequests(LockedBuySellReq.getBuySellRequestList());
             }
         });
     }

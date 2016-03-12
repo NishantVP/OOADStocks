@@ -15,7 +15,7 @@
         <activity
             android:name=".application.StartScreenActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".connections.FirstConnectionToServer"
@@ -47,7 +47,12 @@
         <activity
             android:name=".buysell.BuySellNewActivity"
             android:label="@string/title_activity_buy_sell_new"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".connections.AlternateSendReceiveService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

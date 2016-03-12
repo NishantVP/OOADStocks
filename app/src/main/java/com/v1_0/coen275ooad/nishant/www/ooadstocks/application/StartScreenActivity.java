@@ -23,6 +23,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell.BuySellActivity;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.AlternateSendReceiveService;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.C2SService;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.FirstConnectionToServer;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.StoCService;
@@ -143,6 +144,17 @@ public class StartScreenActivity extends AppCompatActivity {
         i.putExtra("KEY1", "Value to be used by the service");
         StartScreenActivity.this.startService(i);
     }
+
+    public void alternateButtonClicked (View view) {
+        //Start a Service which will initiate the communication wiht the server in background
+        // use this to start and trigger a service
+        Intent i = new Intent(StartScreenActivity.this, AlternateSendReceiveService.class);
+        // potentially add data to the intent
+        i.putExtra("KEY1", "Value to be used by the service");
+        StartScreenActivity.this.startService(i);
+    }
+
+
 
     public void buySellActivityStart (View view) {
         Intent myIntent = new Intent(StartScreenActivity.this, BuySellActivity.class);

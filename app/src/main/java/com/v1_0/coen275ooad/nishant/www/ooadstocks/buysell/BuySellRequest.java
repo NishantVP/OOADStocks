@@ -42,7 +42,12 @@ public class BuySellRequest {
     }
 
     public String getBuySell() {
-        return BuySell;
+        if(BuySell.equals("buy")) {
+            return "true";
+        }
+        else {
+            return "false";
+        }
     }
 
     public void setBuySell(String buySell) {

@@ -24,6 +24,13 @@ public class ReceivedMessageDecode {
         MarketStocks = stocklist;
     }
 
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static List<Stock> getMarketStocks() {
+        return MarketStocks;
+    }
 
     public static synchronized User stringToUser(String data)
     {

@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.AlternateSendReceiveService;
@@ -32,20 +33,20 @@ public class BuySellNewActivity extends AppCompatActivity {
 
         rv = (RecyclerView)findViewById(R.id.stocksrv);
 
-
-
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
+
 
         initializeData();
         initializeAdapter();
 
+        Toast.makeText(this, "Use Send button after locking requests", Toast.LENGTH_LONG).show();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Requests Sent", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
                /* for(int i=0; i<LockedBuySellReq.getBuySellRequestList().size(); i++) {

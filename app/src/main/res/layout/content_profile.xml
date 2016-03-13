@@ -9,48 +9,57 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.v1_0.coen275ooad.nishant.www.ooadstocks.market.MarketStatusActivity"
-    tools:showIn="@layout/activity_market_status">
+    tools:context="com.v1_0.coen275ooad.nishant.www.ooadstocks.user.ProfileActivity"
+    tools:showIn="@layout/activity_profile">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Market Status"
-        android:id="@+id/MarketStatusHeading"
-        android:textSize="40sp"
+        android:text="Name"
+        android:id="@+id/nameLabel"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Your Name"
+        android:id="@+id/NameText"
+        android:layout_below="@+id/nameLabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/MarketStatusHeading"
+        android:layout_below="@+id/NameText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/GoogleStocksRL"
+        android:id="@+id/GoogleOwnedStocksRL"
         android:layout_marginTop="40dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Google"
-            android:id="@+id/GoogleText"
+            android:text="Google Stocks Owned"
+            android:id="@+id/GoogleOwnedText"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Price"
-            android:id="@+id/GoogleValue"
+            android:text="Quantity"
+            android:id="@+id/GoogleOwnedQuantity"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
 
     </RelativeLayout>
@@ -58,31 +67,31 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/GoogleStocksRL"
+        android:layout_below="@+id/GoogleOwnedStocksRL"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/FacebookStocksRL"
+        android:id="@+id/FacebookOwnedStocksRL"
         android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Facebook"
-            android:id="@+id/FacebookText"
+            android:text="Facebook Stocks Owned"
+            android:id="@+id/FacebookOwnedText"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Price"
-            android:id="@+id/FacebookValue"
+            android:text="Quantity"
+            android:id="@+id/FacebookOwnedQuantity"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 
@@ -90,7 +99,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/FacebookStocksRL"
+        android:layout_below="@+id/FacebookOwnedStocksRL"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/AmazonStocksRL"
@@ -100,63 +109,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Amazon"
-            android:id="@+id/AmazonText"
+            android:text="Amazon Stocks Owned"
+            android:id="@+id/AmazonOwnedText"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Price"
-            android:id="@+id/AmazonValue"
+            android:text="Quantity"
+            android:id="@+id/AmazonOwnedQuantity"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
     </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Refresh"
-        android:id="@+id/RefreshMarketButton"
-        android:layout_below="@+id/AmazonStocksRL"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:onClick="refreshButtonClicked"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press Refresh to get latest status"
-        android:id="@+id/statusText"
-        android:layout_below="@+id/RefreshMarketButton"
-        android:layout_centerHorizontal="true" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Cash"
+        android:id="@+id/cashText"
+        android:layout_below="@+id/AmazonStocksRL"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Amount"
+        android:id="@+id/cashValue"
+        android:layout_below="@+id/AmazonStocksRL"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Profile"
-        android:id="@+id/viewProfile"
-        android:layout_below="@+id/statusText"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:onClick="viewProfileClicked"
-         />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buy / Sell"
-        android:id="@+id/butSellStart"
-        android:layout_below="@+id/statusText"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:onClick="buySellClicked"
-        />
-
+        android:text="Refresh Profile"
+        android:id="@+id/refreshProfile"
+        android:layout_below="@+id/cashText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="refreshProfileClicked"/>
 
 </RelativeLayout>

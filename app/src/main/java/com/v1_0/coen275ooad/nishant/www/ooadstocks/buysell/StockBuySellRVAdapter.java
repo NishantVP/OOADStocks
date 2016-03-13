@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.user.Stock;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class StockBuySellRVAdapter extends RecyclerView.Adapter<StockBuySellRVAd
         System.out.println("Inside onBindView");
 
         holder.stockNameTV.setText(stockBuySellList.get(position).getStockName());
-        holder.stockPriceTV.setText(stockBuySellList.get(position).getStockPrice());
+        //holder.stockPriceTV.setText(stockBuySellList.get(position).getStockPrice());
         holder.unlockButton.setEnabled(false);
 
         final String Stock = stockBuySellList.get(position).getStockName();
@@ -81,6 +82,12 @@ public class StockBuySellRVAdapter extends RecyclerView.Adapter<StockBuySellRVAd
                     LockedBuySellReq.AddRequest(Stock,Quantity,ProposedPrice,BuySell);
                     holder.unlockButton.setEnabled(true);
                     holder.lockButton.setEnabled(false);
+
+                    holder.buyRB.setEnabled(false);
+                    holder.sellRB.setEnabled(false);
+                    holder.proposedPriceET.setEnabled(false);
+                    holder.quantityET.setEnabled(false);
+
                     holder.statusUpdateTV.setText("Your Request is Locked");
                 }
             }
@@ -94,6 +101,12 @@ public class StockBuySellRVAdapter extends RecyclerView.Adapter<StockBuySellRVAd
                 LockedBuySellReq.RemoveRequest(Stock);
                 holder.lockButton.setEnabled(true);
                 holder.unlockButton.setEnabled(false);
+
+                holder.buyRB.setEnabled(true);
+                holder.sellRB.setEnabled(true);
+                holder.proposedPriceET.setEnabled(true);
+                holder.quantityET.setEnabled(true);
+
                 holder.statusUpdateTV.setText("Press Lock after editing..");
             }
         });
@@ -122,7 +135,7 @@ public class StockBuySellRVAdapter extends RecyclerView.Adapter<StockBuySellRVAd
 
             System.out.println("Inside Getting all views");
 
-            cv = (CardView)itemView.findViewById(R.id.cv);
+            cv = (CardView)itemView.findViewById(R.id.cvStockBuySell);
             stockNameTV = (TextView)itemView.findViewById(R.id.stock_name);
             stockPriceTV = (TextView)itemView.findViewById(R.id.stock_price);
             statusUpdateTV = (TextView)itemView.findViewById(R.id.statusUpdate);

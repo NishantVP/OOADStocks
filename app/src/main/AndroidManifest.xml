@@ -57,6 +57,10 @@
         <activity
             android:name=".market.MarketStatusActivity"
             android:label="@string/title_activity_market_status"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".user.ProfileActivity"
+            android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

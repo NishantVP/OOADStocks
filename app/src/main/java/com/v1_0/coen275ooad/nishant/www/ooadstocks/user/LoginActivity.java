@@ -22,6 +22,7 @@ import com.v1_0.coen275ooad.nishant.www.ooadstocks.R;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.application.StartScreenActivity;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.buysell.BuySellNewActivity;
 import com.v1_0.coen275ooad.nishant.www.ooadstocks.connections.FirstConnectionToServer;
+import com.v1_0.coen275ooad.nishant.www.ooadstocks.market.MarketStatusActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,12 +35,17 @@ public class LoginActivity extends AppCompatActivity {
     private String serverIP;
     private String serverPort;
 
+    private User currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        currentUser = new User();
+
 
         usernameET = (EditText)findViewById(R.id.username);
         passwordET = (EditText)findViewById(R.id.password);
@@ -118,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
             i.putExtra("KEY1", "Value to be used by the service");
             LoginActivity.this.startService(i);
 
-            Intent myIntent = new Intent(LoginActivity.this, BuySellNewActivity.class);
+            Intent myIntent = new Intent(LoginActivity.this, MarketStatusActivity.class);
             myIntent.putExtra("key", "nothing"); //Optional parameters
             LoginActivity.this.startActivity(myIntent);
         }
